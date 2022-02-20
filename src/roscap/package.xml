@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<?xml-model
+  href="http://download.ros.org/schema/package_format3.xsd"
+  schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>roscap</name>
+  <version>0.0.1</version>
+  <description>
+    This is a set of tools for recording from and playing back MCAP files to ROS
+    topics. It is intended to be high performance and avoids deserialization and
+    reserialization of the messages. 
+  </description>
+  <maintainer email="john@foxglove.dev">John Hurliman</maintainer>
+  <license>BSD</license>
+
+  <url type="website">https://github.com/foxglove/mcap</url>
+  <url type="bugtracker">https://github.com/foxglove/mcap/issues</url>
+  <url type="repository">https://github.com/foxglove/mcap</url>
+  <author email="john@foxglove.dev">John Hurliman</author>
+
+  <depend>libboost-date-time-dev</depend>
+  <depend>libboost-filesystem-dev</depend>
+  <depend>libboost-program-options-dev</depend>
+  <depend>libboost-regex-dev</depend>
+  <depend>libboost-thread-dev</depend>
+  <depend>rosbag_storage</depend>
+  <depend>rosconsole</depend>
+  <depend>roscpp</depend>
+  <depend>std_srvs</depend>
+  <depend>xmlrpcpp</depend>
+
+  <buildtool_depend version_gte="0.5.78">catkin</buildtool_depend>
+
+  <build_depend>cpp_common</build_depend>
+  <build_depend condition="$ROS_PYTHON_VERSION == 2">python-imaging</build_depend>
+  <build_depend condition="$ROS_PYTHON_VERSION == 3">python3-pil</build_depend>
+  <build_depend>roscpp_serialization</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>topic_tools</build_depend>
+  <build_depend>crypto++</build_depend>
+  <build_depend>roslz4</build_depend>
+
+  <exec_depend>genmsg</exec_depend>
+  <exec_depend>genpy</exec_depend>
+  <exec_depend condition="$ROS_PYTHON_VERSION == 2">python-pycryptodome</exec_depend>
+  <exec_depend condition="$ROS_PYTHON_VERSION == 3">python3-pycryptodome</exec_depend>
+  <exec_depend condition="$ROS_PYTHON_VERSION == 2">python-gnupg</exec_depend>
+  <exec_depend condition="$ROS_PYTHON_VERSION == 3">python3-gnupg</exec_depend>
+  <exec_depend condition="$ROS_PYTHON_VERSION == 2">python-rospkg</exec_depend>
+  <exec_depend condition="$ROS_PYTHON_VERSION == 3">python3-rospkg</exec_depend>
+  <exec_depend>roslib</exec_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>roscpp_serialization</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>topic_tools</exec_depend>
+  <exec_depend>crypto++</exec_depend>
+  <exec_depend>roslz4</exec_depend>
+</package>

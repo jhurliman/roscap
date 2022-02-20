@@ -1,0 +1,4 @@
+<launch>
+  <node name="talker_node" pkg="roscpp_tutorials" type="talker" output="screen"/>
+  <node name="roscap_record" pkg="roscap" type="record" args="-a" output="screen" />
+</launch>
