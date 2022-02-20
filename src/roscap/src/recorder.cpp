@@ -66,13 +66,12 @@ OutgoingQueue::OutgoingQueue(string const& _filename, std::queue<OutgoingMessage
 
 // FileWriter
 
-FileWriter::FileWriter(std::string_view filename) {
-    ROS_INFO("Opening file: %s", filename.data());
+void FileWriter::open(std::string_view filename) {
+    end();
     file_ = fopen(filename.data(), "wb");
     if (!file_) {
         throw McapIOException(mcap::StrFormat("Error opening file: {}", filename));
     }
-    ROS_INFO("Opened file: %s", filename.data());
 }
 
 FileWriter::~FileWriter() {
@@ -84,14 +83,12 @@ void FileWriter::handleWrite(const std::byte* data, uint64_t size) {
     if (result != size) {
         throw McapIOException(mcap::StrFormat("Error writing to file: writing {} bytes, wrote {} bytes", size, result));
     }
-    ROS_INFO("Wrote %lu bytes to mcap file", result);
 }
 
 void FileWriter::end() {
     if (file_) {
         fclose(file_);
         file_ = nullptr;
-        ROS_INFO("Closed file");
     }
     size_ = 0;
 }
@@ -456,7 +453,7 @@ void Recorder::startWriting() {
 
     try
     {
-        file_writer_ = FileWriter{write_filename_};
+        file_writer_.open(write_filename_);
     }
     catch (const roscap::McapException& ex)
     {
@@ -652,7 +649,7 @@ void Recorder::doRecordSnapshotter() {
 
         try
         {
-            file_writer_ = FileWriter{write_filename};
+            file_writer_.open(write_filename);
         }
         catch (const roscap::McapException& ex)
         {

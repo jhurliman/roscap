@@ -60,8 +60,9 @@ public:
 class ROSCAP_DECL FileWriter final : public mcap::IWritable {
 public:
     FileWriter() = default;
-    explicit FileWriter(std::string_view filename);
     ~FileWriter() override;
+
+    void open(std::string_view filename);
 
     void handleWrite(const std::byte* data, uint64_t size) override;
     void end() override;

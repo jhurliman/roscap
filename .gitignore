@@ -51,3 +51,7 @@ qtcreator-*
 CATKIN_IGNORE
 
 .DS_Store
+.catkin_workspace
+src/CMakeLists.txt
+*.mcap
+
