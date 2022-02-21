@@ -83,6 +83,7 @@ void FileWriter::handleWrite(const std::byte* data, uint64_t size) {
     if (result != size) {
         throw McapIOException(mcap::StrFormat("Error writing to file: writing {} bytes, wrote {} bytes", size, result));
     }
+    size_ += size;
 }
 
 void FileWriter::end() {
