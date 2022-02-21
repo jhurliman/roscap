@@ -107,6 +107,7 @@ inline int LZ4AccelerationLevel(CompressionLevel level) {
     case CompressionLevel::Default:
     case CompressionLevel::Slow:
     case CompressionLevel::Slowest:
+    default:
       return 1;
   }
 }
@@ -167,6 +168,7 @@ inline int ZStdCompressionLevel(CompressionLevel level) {
     case CompressionLevel::Fast:
       return -3;
     case CompressionLevel::Default:
+    default:
       return 1;
     case CompressionLevel::Slow:
       return 5;
@@ -247,6 +249,7 @@ inline void McapWriter::open(IWritable& writer, const McapWriterOptions& options
   compression_ = chunkSize_ > 0 ? options.compression : Compression::None;
   switch (compression_) {
     case Compression::None:
+    default:
       uncompressedChunk_ = std::make_unique<BufferWriter>();
       break;
     case Compression::Lz4:
@@ -595,6 +598,7 @@ inline IChunkWriter* McapWriter::getChunkWriter() {
 
   switch (compression_) {
     case Compression::None:
+    default:
       return uncompressedChunk_.get();
     case Compression::Lz4:
       return lz4Chunk_.get();

@@ -130,12 +130,12 @@ RecorderOptions::RecorderOptions() :
 
 Recorder::Recorder(RecorderOptions const& options) :
     options_(options),
+    mcap_options_("ros1"),
     num_subscribers_(0),
     exit_code_(0),
     queue_size_(0),
     split_count_(0),
-    writing_enabled_(true),
-    mcap_options_("ros1")
+    writing_enabled_(true)
 {
 }
 
@@ -741,6 +741,7 @@ bool Recorder::doWrite(std::string const& topic, ros::Time const& time, T const&
 
     mcap::Message message;
     message.channelId = channel_id;
+    message.sequence = 0;
     message.logTime = time.toNSec();
     message.publishTime = message.logTime;
     message.dataSize = msg_ser_len;

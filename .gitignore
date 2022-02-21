@@ -49,9 +49,12 @@ qtcreator-*
 
 # Catkin custom files
 CATKIN_IGNORE
-
-.DS_Store
 .catkin_workspace
 src/CMakeLists.txt
-*.mcap
 
+# OS / IDE settings
+.DS_Store
+.vscode
+
+# MCAP recording logs
+*.mcap
